@@ -2,6 +2,7 @@
 #define _RBTREE_H_
 
 #include <stddef.h>
+#include <stdio.h>
 
 typedef enum { RBTREE_RED, RBTREE_BLACK } color_t;
 
@@ -18,7 +19,7 @@ typedef struct {
   node_t *nil;  // for sentinel
 } rbtree;
 
-rbtree *new_rbtree(void);
+rbtree * new_rbtree(void);
 void delete_rbtree(rbtree *);
 
 node_t *rbtree_insert(rbtree *, const key_t);
