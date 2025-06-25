@@ -1,0 +1,8 @@
+digraph RBTree {
+  node [fontname="Arial"];
+  "0xaaaaaaac12c0" [label="0", shape=circle, style=filled, color=black, fillcolor=black, fontcolor=white];
+  null0xaaaaaaac12c0L [shape=point, width=0.1];
+  "0xaaaaaaac12c0" -> null0xaaaaaaac12c0L;
+  null0xaaaaaaac12c0R [shape=point, width=0.1];
+  "0xaaaaaaac12c0" -> null0xaaaaaaac12c0R;
+}
