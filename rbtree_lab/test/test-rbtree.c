@@ -4,7 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_rb_tree(node_t* root);
+void print_rb_tree(rbtree* t, node_t* root){
+  if(root == t->nil) return;
+  print_rb_tree(t,root->left);
+  printf("%d ",root->key);
+  print_rb_tree(t,root->right);
+}
 // new_rbtree should return rbtree struct with null root node
 void test_init(void)
 {
@@ -81,6 +86,8 @@ static void insert_arr(rbtree *t, const key_t *arr, const size_t n)
   for (size_t i = 0; i < n; i++)
   {
     rbtree_insert(t, arr[i]);
+    printf("\n========================\n");
+    print_rb_tree(t,t->root);
   }
 }
 
@@ -157,6 +164,7 @@ void test_to_array(rbtree *t, const key_t *arr, const size_t n)
   }
   free(res);
 }
+
 void test_multi_instance()
 {
   rbtree *t1 = new_rbtree();
@@ -257,8 +265,7 @@ static void init_color_traverse(void)
   max_black_depth = 0;
 }
 
-static bool color_traverse(const node_t *p, const color_t parent_color,
-                           const int black_depth, node_t *nil)
+static bool color_traverse(const node_t *p, const color_t parent_color,const int black_depth, node_t *nil)
 {
   if (p == nil)
   {
@@ -417,12 +424,12 @@ int main(void)
   test_insert_single(1024);
   test_find_single(512, 1024);
   test_erase_root(128);
-  // test_find_erase_fixed();
+  test_find_erase_fixed();
   test_minmax_suite();
-  // test_to_array_suite();
-  // test_distinct_values();
-  // test_duplicate_values();
-  // test_multi_instance();
-  // test_find_erase_rand(10000, 17);
+  test_to_array_suite();
+  test_distinct_values();
+  test_duplicate_values();
+  test_multi_instance();
+  test_find_erase_rand(10000, 17);
   printf("Passed all tests!\n");
 }
